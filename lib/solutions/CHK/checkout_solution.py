@@ -157,10 +157,3 @@ def checkout(skus):
             total_price += num_bulks * bulk_price
 
     return total_price
-
-
-
-
-
-
-
