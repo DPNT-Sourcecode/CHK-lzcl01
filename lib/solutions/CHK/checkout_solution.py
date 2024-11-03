@@ -121,10 +121,9 @@ def checkout(skus):
         sp_offers.append(1, prices[sku])
 
         for bulk_amount, bulk_price in sp_offers:
-            special_price_items = count // self.offer.item_count
-            regular_price_items = count % self.offer.item_count
-            total_price = special_price_items * self.offer.special_price + regular_price_items * self.price
-
+            num_bulks = count // bulk_amount
+            count = count % bulk_amount
+            total_price += num_bulks * bulk_price
 
     return total_price
 

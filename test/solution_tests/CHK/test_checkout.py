@@ -21,6 +21,10 @@ def test_special_offers_checkout():
     assert checkout("BBBB") == 90
 
 
+def test_special_offers_priority_checkout():
+    assert checkout("AAAAA") == 200
+
+
 def test_mixed_special_offers_checkout():
     assert checkout("AAAA") == 180
     assert checkout("BBBBB") == 120
@@ -28,3 +32,7 @@ def test_mixed_special_offers_checkout():
 
 def test_multiple_mixed_special_offers_checkout():
     assert checkout("AAAABBBBB") == 300
+
+
+def test_free_item_offer():
+    assert checkout("BBEE") == 40 + 40 + 30
