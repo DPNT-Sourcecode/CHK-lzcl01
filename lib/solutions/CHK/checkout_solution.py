@@ -109,12 +109,16 @@ def checkout(skus):
         item_counts[sku] = item_counts.get(sku, 0) + 1
 
     for bundle, deal in deals.items():
-        amount, price = deal
+        amount, deal_price = deal
         items = sorted(list(bundle), key=most_expensive_first)
 
         total_count = 0
         for item in items:
             total_count += item_counts[item]
+
+        num_deals = total_count // amount
+
+        total_price += num_deals * deal_price
 
     # Count free items
     free_item_counts = {}
@@ -140,6 +144,7 @@ def checkout(skus):
             total_price += num_bulks * bulk_price
 
     return total_price
+
 
 
 
