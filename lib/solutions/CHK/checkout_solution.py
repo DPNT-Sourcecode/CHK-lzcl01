@@ -51,8 +51,14 @@ prices = {}
 special_offers = {}
 free_items_offers = {}
 
-for line in table.split("\n"):
-    
+for line in table.strip().split("\n"):
+    colums = line.strip().split("|")
+    print(colums)
+
+    item = colums[1].strip()
+    price = int(colums[2].strip())
+
+    offers = colums[3].split(",")   
 
 # noinspection PyUnusedLocal
 # skus = unicode string
@@ -89,5 +95,3 @@ def checkout(skus):
             total_price += num_bulks * bulk_price
 
     return total_price
-
-
