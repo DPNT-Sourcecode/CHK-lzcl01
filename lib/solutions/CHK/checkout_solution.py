@@ -104,6 +104,9 @@ def checkout(skus):
             return -1
         item_counts[sku] = item_counts.get(sku, 0) + 1
 
+    for bundle, deal in deals.items():
+        amount, price = deal
+
     # Count free items
     free_item_counts = {}
     for sku, offer in free_items_offers.items():
@@ -128,4 +131,5 @@ def checkout(skus):
             total_price += num_bulks * bulk_price
 
     return total_price
+
 
