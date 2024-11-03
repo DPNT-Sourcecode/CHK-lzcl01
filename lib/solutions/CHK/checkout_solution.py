@@ -51,33 +51,40 @@ prices = {}
 special_offers = {}
 free_items_offers = {}
 
-for line in table.strip().split("\n"):
-    colums = line.strip().split("|")
-    print(colums)
+def parse_shop():
+    for line in table.strip().split("\n"):
+        colums = line.strip().split("|")
 
-    item = colums[1].strip()
-    price = int(colums[2].strip())
-    offers = colums[3].split(",")   
+        item = colums[1].strip()
+        price = int(colums[2].strip())
+        offers = colums[3].split(",")   
 
-    prices[item] = price
+        prices[item] = price
 
-    for offer in offers:
-        tokens = offer.split()
-        if 'for' in tokens:
-            amount = int(tokens[0][:-1])
-            price = int(tokens[-1])
-            
-            if item not in special_offers:
-                special_offers[item] = []
-            special_offers[item].append((amount, price))
+        for offer in offers:
+            tokens = offer.split()
+            if 'for' in tokens:
+                amount = int(tokens[0][:-1])
+                price = int(tokens[-1])
+                
+                if item not in special_offers:
+                    special_offers[item] = []
+                special_offers[item].append((amount, price))
 
-        elif 'get' in tokens:
-            amount = int(tokens[0][:-1])
-            free_item = tokens[-2]
+            elif 'get' in tokens:
+                amount = int(tokens[0][:-1])
+                free_item = tokens[-2]
+
+                if item not in free_items_offers:
+                    free_items_offers[item] = []
+                free_items_offers[item].append((amount, free_item))
 
 # noinspection PyUnusedLocal
 # skus = unicode string
 def checkout(skus):
+
+    if not prices:
+        parse_shop()
 
     # Count items in basket    
     item_counts = {}
@@ -110,5 +117,6 @@ def checkout(skus):
             total_price += num_bulks * bulk_price
 
     return total_price
+
 
 
