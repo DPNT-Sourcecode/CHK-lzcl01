@@ -1,12 +1,19 @@
 class Price:
-    def __init__(self, price, offer=None):
+    def __init__(self, price, offers=None):
         self.price = price
-        self.offer = offer
+        if offers:
+            self.offers = offers
+        else:
+            self.offers = []
+    
+    def apply_offers(self, basket):
+        for offer in self.offers:
+            offer.apply(basket)
 
-    def total(self, purchase_count):
-        """Calculates the total price of multiple items
-        applying special offers if present
-        Returns the total price of all items"""
+
+class SpecialOffer:
+    """Shared interface for all special offer"""
+    def apply(basket):
 
         total_price = 0
 
@@ -16,14 +23,6 @@ class Price:
             total_price = special_price_items * self.offer.special_price + regular_price_items * self.price
         else:
             total_price = purchase_count * self.price
-
-        return total_price
-
-
-class SpecialOffer:
-    """Shared interface for all special offer"""
-    def apply(basket):
-        pass
 
 
 class SpecialPriceOffer(SpecialOffer):
@@ -65,7 +64,8 @@ class Basket:
 
     def total(self):
         
-        for item in self.
+        for item in self.item_counts:
+            
 
         return 0
 
@@ -87,6 +87,7 @@ def checkout(skus):
         basket.add_sku(sku)
 
     return basket.total()
+
 
 
 
