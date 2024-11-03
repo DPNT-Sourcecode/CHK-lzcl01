@@ -21,6 +21,18 @@ class Price:
 
 
 class SpecialOffer:
+    """Shared interface for all special offer"""
+    def apply(basket):
+        pass
+
+
+class SpecialPriceOffer(SpecialOffer):
+    def __init__(self, item_count, special_price):
+        self.item_count = item_count
+        self.special_price = special_price
+
+
+class FreeItemOffer(SpecialOffer):
     def __init__(self, item_count, special_price):
         self.item_count = item_count
         self.special_price = special_price
@@ -57,5 +69,6 @@ def checkout(skus):
         basket.add_sku(sku)
 
     return basket.total()
+
 
 
