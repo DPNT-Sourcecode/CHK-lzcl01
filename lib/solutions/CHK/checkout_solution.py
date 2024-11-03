@@ -122,6 +122,8 @@ def checkout(skus):
         num_deals = total_count // amount
 
         for item in items:
+            if item not in item_counts:
+                continue
             if total_count < item_counts.get(item, 0):
                 item_counts[item] -= total_count
                 break

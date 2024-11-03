@@ -45,3 +45,8 @@ def test_free_item_same_offer():
     assert checkout("FFFF") == 30
     assert checkout("FFFFF") == 40
     assert checkout("FFFFFF") == 40
+
+
+def test_meal_deals():
+    assert checkout("STX") == 45
+    assert checkout("ZXXZZ") == 45 + 17 + 17
