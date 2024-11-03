@@ -41,12 +41,17 @@ class FreeItemOffer(SpecialOffer):
 class Basket:
     def __init__(self):
         self.sku_counts = {}
+        self.free_sku_counts = {}
 
     def add_sku(self, sku):
         if sku in self.sku_counts:
             self.sku_counts[sku] += 1
         else:
             self.sku_counts[sku] = 1
+            self.free_sku_counts[sku] = 0
+
+    def add_free_sku_eligibility(free_sku):
+        self.free_sku_counts[free_sku] += 1
 
     def total():
         return 0
@@ -69,6 +74,7 @@ def checkout(skus):
         basket.add_sku(sku)
 
     return basket.total()
+
 
 
 
