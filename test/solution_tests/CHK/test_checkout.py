@@ -36,3 +36,8 @@ def test_multiple_mixed_special_offers_checkout():
 
 def test_free_item_offer():
     assert checkout("BBEE") == 40 + 40 + 30
+
+
+def test_free_item_same_offer():
+    assert checkout("FF") == 20
+    assert checkout("FFF") == 20
