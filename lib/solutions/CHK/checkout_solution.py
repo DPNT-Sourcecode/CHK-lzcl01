@@ -48,6 +48,7 @@ class Basket:
         self.price_table = price_table
         self.item_counts = {}
         self.free_sku_counts = {}
+        self.unbulked_items = {}
 
     def add_item(self, item):
         if item in self.sku_counts:
@@ -70,8 +71,8 @@ class Basket:
         return 0
 
 price_table = {
-    'A': Price(50, SpecialOffer(3, 130)),
-    'B': Price(30, SpecialOffer(2, 45)),
+    'A': Price(50, [SpecialOffer(3, 130), ]),
+    'B': Price(30, [SpecialOffer(2, 45), ]),
     'C': Price(20),
     'D': Price(15),
 }
@@ -87,11 +88,3 @@ def checkout(skus):
         basket.add_sku(sku)
 
     return basket.total()
-
-
-
-
-
-
-
-
