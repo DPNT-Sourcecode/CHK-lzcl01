@@ -58,9 +58,14 @@ def parse_shop():
 
         item = colums[1].strip()
         price = int(colums[2].strip())
-        offers = colums[3].split(",")   
 
         prices[item] = price
+        
+        if 'buy any' in colums[3]:
+            tokens = colums[3].split()
+            amount = int(tokens[2])    
+
+        offers = colums[3].split(",")   
 
         for offer in offers:
             tokens = offer.split()
@@ -76,8 +81,6 @@ def parse_shop():
                 amount = int(tokens[0][:-1])
                 free_item = tokens[-2]
                 free_items_offers[item] = (amount, free_item)
-            
-            elif 'any' in tokens:
 
 
     for offers in special_offers.values():
@@ -122,10 +125,3 @@ def checkout(skus):
             total_price += num_bulks * bulk_price
 
     return total_price
-
-
-
-
-
-
-
