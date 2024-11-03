@@ -74,10 +74,7 @@ def parse_shop():
             elif 'get' in tokens:
                 amount = int(tokens[0][:-1])
                 free_item = tokens[-2]
-
-                if item not in free_items_offers:
-                    free_items_offers[item] = []
-                free_items_offers[item].append((amount, free_item))
+                free_items_offers[item] = (amount, free_item)
 
 # noinspection PyUnusedLocal
 # skus = unicode string
@@ -118,6 +115,7 @@ def checkout(skus):
             total_price += num_bulks * bulk_price
 
     return total_price
+
 
 
 
