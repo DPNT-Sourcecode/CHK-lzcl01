@@ -51,8 +51,3 @@ def checkout(skus):
         total_price += price_table[sku].total(count)
     
     return total_price
-
-
-
-
-
