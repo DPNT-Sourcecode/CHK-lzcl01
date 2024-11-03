@@ -86,9 +86,9 @@ prices = {
     'E': 40
 }
 
-# Sorted in quantities
+# Sorted by number of items descending
 special_offers = {
-    'A': [(3, 130), (5, 200)],
+    'A': [(5, 200), (3, 130)],
     'B': (2, 45),
 }
 
@@ -118,10 +118,16 @@ def checkout(skus):
         count -= free_item_counts.get(sku, 0)
 
         sp_offers = special_offers[sku]
-        sp_offers.insert(0, (1, prices[sku]))                        
+        sp_offers.append(1, prices[sku])
+
+        for bulk_amount, bulk_price in sp_offers:
+            special_price_items = count // self.offer.item_count
+            regular_price_items = count % self.offer.item_count
+            total_price = special_price_items * self.offer.special_price + regular_price_items * self.price
 
 
     return total_price
+
 
 
 
