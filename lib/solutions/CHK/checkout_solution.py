@@ -121,13 +121,15 @@ def checkout(skus):
 
         num_deals = total_count // amount
 
+        sub_amount = num_deals * amount
+
         for item in items:
             if item not in item_counts:
                 continue
-            if total_count < item_counts.get(item, 0):
-                item_counts[item] -= total_count
+            if sub_amount <= item_counts[item]:
+                item_counts[item] -= sub_amount
                 break
-            total_count -= item_counts.get(item, 0)
+            sub_amount -= item_counts[item]
             item_counts[item] = 0
 
         total_price += num_deals * deal_price
@@ -155,6 +157,7 @@ def checkout(skus):
             total_price += num_bulks * bulk_price
 
     return total_price
+
 
 
 
