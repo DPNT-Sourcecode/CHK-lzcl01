@@ -24,6 +24,13 @@ def checkout(skus):
     for sku in skus:
         if sku not in price_table:
             return -1
+        
+        if sku in basket_counts:
+            basket_counts[sku] += 1
+        else:
+            basket_counts[sku] = 1
+        
     return -1
+
 
 
