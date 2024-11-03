@@ -13,7 +13,7 @@ class Price:
         if self.offer:
             special_price_items = purchase_count // self.offer.item_count
             regular_price_items = purchase_count % self.offer.item_count
-            total_price = special_price_items * self.offer.price + regular_price_items * self.price
+            total_price = special_price_items * self.offer.special_price + regular_price_items * self.price
         else:
             total_price = purchase_count * self.price
 
