@@ -63,7 +63,10 @@ def parse_shop():
         
         if 'buy any' in colums[3]:
             tokens = colums[3].split()
-            amount = int(tokens[2])    
+            amount = int(tokens[2])
+            bundle_key = tuple(sorted(tokens[4][1:-1].split(',')))
+            price = int(tokens[-1])
+            deals[bundle_key] = (amount, price)
 
         offers = colums[3].split(",")   
 
@@ -125,3 +128,4 @@ def checkout(skus):
             total_price += num_bulks * bulk_price
 
     return total_price
+
