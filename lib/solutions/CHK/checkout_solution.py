@@ -98,16 +98,26 @@ free_items_offers = {
 # noinspection PyUnusedLocal
 # skus = unicode string
 def checkout(skus):
-    
+
+    # Count items in basket    
     item_counts = {}
     for sku in skus:
         item_counts[sku] = item_counts.get(sku, 0) + 1
 
+    # Count free items
     free_item_counts = {}
-    for free_item_offer in free_items_offers.items():
+    for sku, offer in free_items_offers.items():
+        required_amount, free_item = offer
+        num_frees = item_counts[sku] // required_amount
+        free_item_counts[free_item] = free_item_counts.get(free_item, 0) + num_frees
+
+    total_price = 0
+
+    for sku, count in item_counts.items():
         
 
-    return 0
+    return total_price
+
 
 
 
