@@ -67,6 +67,7 @@ def parse_shop():
             bundle_key = tuple(sorted(tokens[4][1:-1].split(',')))
             price = int(tokens[-1])
             deals[bundle_key] = (amount, price)
+            continue
 
         offers = colums[3].split(",")   
 
@@ -96,6 +97,7 @@ def most_expensive_first(sku):
 # noinspection PyUnusedLocal
 # skus = unicode string
 def checkout(skus):
+    total_price = 0
 
     if not prices:
         print("Hello")
@@ -115,15 +117,15 @@ def checkout(skus):
 
         total_count = 0
         for item in items:
-            total_count += item_counts[item]
+            total_count += item_counts.get(item, 0)
 
         num_deals = total_count // amount
 
         for item in items:
-            if total_count < item_counts[item]:
+            if total_count < item_counts.get(item, 0):
                 item_counts[item] -= total_count
                 break
-            total_count -= item_counts[item]
+            total_count -= item_counts.get(item, 0)
             item_counts[item] = 0
 
         total_price += num_deals * deal_price
@@ -138,7 +140,6 @@ def checkout(skus):
             num_frees = item_counts.get(sku, 0) // (required_amount + 1)
         free_item_counts[free_item] = free_item_counts.get(free_item, 0) + num_frees
 
-    total_price = 0
 
     for sku, count in item_counts.items():
         count -= free_item_counts.get(sku, 0)
@@ -152,6 +153,7 @@ def checkout(skus):
             total_price += num_bulks * bulk_price
 
     return total_price
+
 
 
 
