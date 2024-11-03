@@ -108,6 +108,7 @@ def checkout(skus):
             return -1
         item_counts[sku] = item_counts.get(sku, 0) + 1
 
+    # Process deals
     for bundle, deal in deals.items():
         amount, deal_price = deal
         items = sorted(list(bundle), key=most_expensive_first)
@@ -117,6 +118,13 @@ def checkout(skus):
             total_count += item_counts[item]
 
         num_deals = total_count // amount
+
+        for item in items:
+            if total_count < item_counts[item]:
+                item_counts[item] -= total_count
+                break
+            total_count -= item_counts[item]
+            item_counts[item] = 0
 
         total_price += num_deals * deal_price
 
@@ -144,6 +152,7 @@ def checkout(skus):
             total_price += num_bulks * bulk_price
 
     return total_price
+
 
 
 
