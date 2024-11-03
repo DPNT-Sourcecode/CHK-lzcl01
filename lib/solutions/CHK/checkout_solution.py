@@ -86,6 +86,7 @@ prices = {
     'E': 40
 }
 
+# Sorted in quantities
 special_offers = {
     'A': [(3, 130), (5, 200)],
     'B': (2, 45),
@@ -114,9 +115,14 @@ def checkout(skus):
     total_price = 0
 
     for sku, count in item_counts.items():
-        
+        count -= free_item_counts.get(sku, 0)
+
+
+        cur_spec_offer = 0
+
 
     return total_price
+
 
 
 
