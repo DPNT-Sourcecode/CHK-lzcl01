@@ -67,15 +67,19 @@ class Basket:
         
         for item in self.item_counts:
             
-
         return 0
 
 price_table = {
-    'A': Price(50, [SpecialOffer(3, 130), ]),
-    'B': Price(30, [SpecialOffer(2, 45), ]),
+    'A': Price(50, [SpecialOffer(3, 130), SpecialOffer(5, 200)]),
+    'B': Price(30, [SpecialOffer(2, 45)]),
     'C': Price(20),
     'D': Price(15),
+    'E': Price(40, [FreeItemOffer('E', 2, 'B')])
 }
+
+special_offers = [
+    
+]
 
 # noinspection PyUnusedLocal
 # skus = unicode string
@@ -88,3 +92,4 @@ def checkout(skus):
         basket.add_sku(sku)
 
     return basket.total()
+
