@@ -32,15 +32,17 @@ class SpecialPriceOffer(SpecialOffer):
         self.special_price = special_price
 
     def apply(basket):
-
+        pass
 
 class FreeItemOffer(SpecialOffer):
-    def __init__(self, item_count, free_sku):
+    def __init__(self, target_item, item_count, free_item):
+        self.target_item = target_item
         self.item_count = item_count
-        self.free_sku = free_sku
+        self.free_item = free_item
 
     def apply(basket):
-        basket.add
+        
+
 
 class Basket:
     def __init__(self):
@@ -81,6 +83,7 @@ def checkout(skus):
         basket.add_sku(sku)
 
     return basket.total()
+
 
 
 
