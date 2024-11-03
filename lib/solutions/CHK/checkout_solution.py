@@ -57,8 +57,15 @@ for line in table.strip().split("\n"):
 
     item = colums[1].strip()
     price = int(colums[2].strip())
-
     offers = colums[3].split(",")   
+
+    prices[item] = price
+
+    for offer in offers:
+        tokens = offer.split()
+        if 'for' in tokens:
+            amount = int(tokens[0][:-1])
+        elif 'get' in tokens:
 
 # noinspection PyUnusedLocal
 # skus = unicode string
@@ -95,3 +102,4 @@ def checkout(skus):
             total_price += num_bulks * bulk_price
 
     return total_price
+
