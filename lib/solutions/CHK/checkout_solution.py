@@ -5,10 +5,19 @@ class Price:
 
     def total(self, purchase_count):
         """Calculates the total price of multiple items
-        applying special offers if present"""
+        applying special offers if present
+        Returns the total price of all items"""
+
+        total_price = 0
 
         if self.offer:
             special_price_items = purchase_count // self.offer.item_count
+            regular_price_items = purchase_count % self.offer.item_count
+            total_price = special_price_items * self.offer.price + regular_price_items * self.price
+        else:
+            total_price = purchase_count * self.price
+
+        return total_price
 
 
 class SpecialOffer:
@@ -41,6 +50,7 @@ def checkout(skus):
     for sku, count in basket_counts.items():
 
     return -1
+
 
 
 
