@@ -89,6 +89,10 @@ def parse_shop():
     for offers in special_offers.values():
         offers.sort(reverse=True)
 
+
+def most_expensive_first(sku):
+    return -prices[sku]
+
 # noinspection PyUnusedLocal
 # skus = unicode string
 def checkout(skus):
@@ -106,6 +110,11 @@ def checkout(skus):
 
     for bundle, deal in deals.items():
         amount, price = deal
+        items = sorted(list(bundle), key=most_expensive_first)
+
+        total_count = 0
+        for item in items:
+            total_count += item_counts[item]
 
     # Count free items
     free_item_counts = {}
@@ -131,5 +140,6 @@ def checkout(skus):
             total_price += num_bulks * bulk_price
 
     return total_price
+
 
 
