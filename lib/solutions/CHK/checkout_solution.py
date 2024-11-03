@@ -26,6 +26,16 @@ class SpecialOffer:
         self.special_price = special_price
 
 
+class Basket:
+    def __init__(self):
+        self.sku_counts = {}
+
+    def add_sku(self, sku):
+        if sku in self.sku_counts:
+            self.sku_counts[sku] += 1
+        else:
+            self.sku_counts[sku] = 1
+
 price_table = {
     'A': Price(50, SpecialOffer(3, 130)),
     'B': Price(30, SpecialOffer(2, 45)),
@@ -36,18 +46,16 @@ price_table = {
 # noinspection PyUnusedLocal
 # skus = unicode string
 def checkout(skus):
-    basket_counts = {}
+    basket = Basket()
     for sku in skus:
         if sku not in price_table:
             return -1
         
-        if sku in basket_counts:
-            basket_counts[sku] += 1
-        else:
-            basket_counts[sku] = 1
+        basket.add_sku(sku)
 
     total_price = 0
     for sku, count in basket_counts.items():
         total_price += price_table[sku].total(count)
     
     return total_price
+
