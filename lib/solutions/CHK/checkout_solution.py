@@ -84,6 +84,7 @@ def parse_shop():
 def checkout(skus):
 
     if not prices:
+        print("Hello")
         parse_shop()
 
     # Count items in basket    
@@ -117,6 +118,7 @@ def checkout(skus):
             total_price += num_bulks * bulk_price
 
     return total_price
+
 
 
 
