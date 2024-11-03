@@ -65,7 +65,15 @@ for line in table.strip().split("\n"):
         tokens = offer.split()
         if 'for' in tokens:
             amount = int(tokens[0][:-1])
+            price = int(tokens[-1])
+            
+            if item not in special_offers:
+                special_offers[item] = []
+            special_offers[item].append((amount, price))
+
         elif 'get' in tokens:
+            amount = int(tokens[0][:-1])
+            free_item = tokens[-2]
 
 # noinspection PyUnusedLocal
 # skus = unicode string
@@ -102,4 +110,5 @@ def checkout(skus):
             total_price += num_bulks * bulk_price
 
     return total_price
+
 
