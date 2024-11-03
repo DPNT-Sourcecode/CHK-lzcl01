@@ -77,10 +77,6 @@ price_table = {
     'E': Price(40, [FreeItemOffer('E', 2, 'B')])
 }
 
-special_offers = [
-    
-]
-
 # noinspection PyUnusedLocal
 # skus = unicode string
 def checkout(skus):
@@ -92,4 +88,5 @@ def checkout(skus):
         basket.add_sku(sku)
 
     return basket.total()
+
 
