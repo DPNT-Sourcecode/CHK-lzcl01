@@ -36,6 +36,9 @@ class Basket:
         else:
             self.sku_counts[sku] = 1
 
+    def total():
+        return 0
+
 price_table = {
     'A': Price(50, SpecialOffer(3, 130)),
     'B': Price(30, SpecialOffer(2, 45)),
@@ -53,9 +56,6 @@ def checkout(skus):
         
         basket.add_sku(sku)
 
-    total_price = 0
-    for sku, count in basket_counts.items():
-        total_price += price_table[sku].total(count)
-    
-    return total_price
+    return basket.total()
+
 
