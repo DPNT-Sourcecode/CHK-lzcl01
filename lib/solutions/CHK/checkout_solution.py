@@ -76,6 +76,9 @@ def parse_shop():
                 free_item = tokens[-2]
                 free_items_offers[item] = (amount, free_item)
 
+    for offers in special_offers.values():
+        offers.sort(reverse=True)
+
 # noinspection PyUnusedLocal
 # skus = unicode string
 def checkout(skus):
@@ -115,6 +118,7 @@ def checkout(skus):
             total_price += num_bulks * bulk_price
 
     return total_price
+
 
 
 
