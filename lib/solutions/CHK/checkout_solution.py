@@ -33,7 +33,10 @@ def checkout(skus):
     free_item_counts = {}
     for sku, offer in free_items_offers.items():
         required_amount, free_item = offer
-        num_frees = item_counts.get(sku, 0) // required_amount
+        if sku != free_item:
+            num_frees = item_counts.get(sku, 0) // required_amount
+        else:
+            num_frees = item_counts.get(sku, 0) // (required_amount + 1)
         free_item_counts[free_item] = free_item_counts.get(free_item, 0) + num_frees
 
     total_price = 0
@@ -50,3 +53,4 @@ def checkout(skus):
             total_price += num_bulks * bulk_price
 
     return total_price
+
