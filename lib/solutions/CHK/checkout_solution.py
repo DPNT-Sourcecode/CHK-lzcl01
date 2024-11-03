@@ -41,28 +41,32 @@ class FreeItemOffer(SpecialOffer):
         self.free_item = free_item
 
     def apply(basket):
-        
+        pass
 
 
 class Basket:
-    def __init__(self):
-        self.sku_counts = {}
+    def __init__(self, price_table):
+        self.price_table = price_table
+        self.item_counts = {}
         self.free_sku_counts = {}
 
-    def add_sku(self, sku):
-        if sku in self.sku_counts:
-            self.sku_counts[sku] += 1
+    def add_item(self, item):
+        if item in self.sku_counts:
+            self.item_counts[item] += 1
         else:
-            self.sku_counts[sku] = 1
-            self.free_sku_counts[sku] = 0
+            self.item_counts[item] = 1
+            self.free_item_counts[item] = 0
 
-    def add_free_sku_eligibility(self, free_sku):
-        if free_sku in self.free_sku_counts:
-            self.free_sku_counts[free_sku] = 1
+    def add_free_sku_eligibility(self, free_item):
+        if free_item in self.free_item_counts:
+            self.free_item_counts[free_item] = 1
         else:
-            self.free_sku_counts[free_sku] += 1
+            self.free_item_counts[free_item] += 1
 
-    def total():
+    def total(self):
+        
+        for item in self.
+
         return 0
 
 price_table = {
@@ -83,6 +87,7 @@ def checkout(skus):
         basket.add_sku(sku)
 
     return basket.total()
+
 
 
 
