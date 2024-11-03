@@ -117,11 +117,12 @@ def checkout(skus):
     for sku, count in item_counts.items():
         count -= free_item_counts.get(sku, 0)
 
-
-        cur_spec_offer = 0
+        sp_offers = special_offers[sku]
+        sp_offers.insert(0, (1, prices[sku]))                        
 
 
     return total_price
+
 
 
 
