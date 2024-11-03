@@ -91,17 +91,24 @@ special_offers = {
     'B': (2, 45),
 }
 
+free_items_offers = {
+    'E': (2, 'B')
+}
+
 # noinspection PyUnusedLocal
 # skus = unicode string
 def checkout(skus):
-    basket = Basket()
+    
+    item_counts = {}
     for sku in skus:
-        if sku not in price_table:
-            return -1
-        
-        basket.add_sku(sku)
+        item_counts[sku] = item_counts.get(sku, 0) + 1
 
-    return basket.total()
+    free_item_counts = {}
+    for free_item_offer in free_items_offers.items():
+        
+
+    return 0
+
 
 
 
